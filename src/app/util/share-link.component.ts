@@ -3,8 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sharelink',
-  templateUrl: '../../themes/_active/util/share-link.component.html',
-  styleUrls: ['../../themes/_active/util/share-link.component.scss'],
+  templateUrl: './share-link.component.html',
+  styleUrls: ['./share-link.component.scss'],
 })
 export class ShareLinkComponent implements OnInit {
   @Input() link: string[];

@@ -6,8 +6,8 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'issuer-form',
-  templateUrl: '../../themes/_active/issuer/form.component.html',
-  styleUrls: ['../../themes/_active/issuer/form.component.scss']
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
 export class IssuerFormComponent implements OnInit, OnDestroy {
   id: number;

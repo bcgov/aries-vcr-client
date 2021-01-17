@@ -6,8 +6,8 @@ import { GeneralDataService } from '../general-data.service';
 
 @Component({
   selector: 'attribute-list',
-  templateUrl: '../../themes/_active/util/attribute-list.component.html',
-  styleUrls: ['../../themes/_active/cred/cred.scss'],
+  templateUrl: './attribute-list.component.html',
+  styleUrls: ['../shared/styles/cred/cred.scss'],
 })
 export class AttributeListComponent {
   @Input() byType: string[];

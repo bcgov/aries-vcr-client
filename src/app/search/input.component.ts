@@ -14,8 +14,8 @@ export interface ICredentialTypeOption {
 
 @Component({
   selector: 'search-input',
-  templateUrl: '../../themes/_active/search/input.component.html',
-  styleUrls: ['../../themes/_active/search/input.component.scss'],
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
 })
 export class SearchInputComponent implements AfterViewInit {
   @Input() showInactive = false;

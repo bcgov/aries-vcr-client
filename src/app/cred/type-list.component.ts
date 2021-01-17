@@ -3,10 +3,10 @@ import { Model } from '../data-types';
 
 @Component({
   selector: 'cred-type-list',
-  templateUrl: '../../themes/_active/cred/type-list.component.html',
+  templateUrl: './type-list.component.html',
   styleUrls: [
-    '../../themes/_active/cred/cred.scss',
-    '../../themes/_active/cred/type-list.component.scss']
+    '../shared/styles/cred/cred.scss',
+    './type-list.component.scss']
 })
 export class CredTypeListComponent {
 

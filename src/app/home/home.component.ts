@@ -5,8 +5,8 @@ import { GeneralDataService } from 'app/general-data.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: '../../themes/_active/home/home.component.html',
-  styleUrls: ['../../themes/_active/home/home.component.scss'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput') _searchInput: SearchInputComponent;

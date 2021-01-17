@@ -3,10 +3,10 @@ import { Model } from '../data-types';
 
 @Component({
   selector: 'name-panel',
-  templateUrl: '../../themes/_active/cred/name-panel.component.html',
+  templateUrl: './name-panel.component.html',
   styleUrls: [
-    '../../themes/_active/cred/cred.scss',
-    '../../themes/_active/cred/name-panel.component.scss']
+    '../shared/styles/cred/cred.scss',
+    './name-panel.component.scss']
 })
 export class NamePanelComponent {
 

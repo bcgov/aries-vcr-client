@@ -4,7 +4,7 @@ import { Model } from '../data-types';
 @Component({
   selector: 'address-view',
   template: `<div *ngIf="record" class="claim-info location" [innerHTML]="formatted"></div>`,
-  styleUrls: ['../../themes/_active/cred/cred.scss']
+  styleUrls: ['../shared/styles/cred/cred.scss']
 })
 export class AddressComponent {
 

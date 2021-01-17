@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'related-relationships',
-  templateUrl: '../../themes/_active/topic/relations-list.component.html',
+  templateUrl: './relations-list.component.html',
 })
 export class TopicRelatedListComponent implements OnInit, OnDestroy {
   protected _topicId: number;

@@ -7,8 +7,8 @@ import { TopicStateService } from 'app/topic/services/topic-state.service';
 
 @Component({
   selector: 'credset-timeline',
-  templateUrl: '../../themes/_active/cred/timeline.component.html',
-  styleUrls: ['../../themes/_active/cred/timeline.component.scss'],
+  templateUrl: './timeline.component.html',
+  styleUrls: ['./timeline.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CredSetTimelineComponent implements OnInit, OnDestroy {

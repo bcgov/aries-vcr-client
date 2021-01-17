@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'error-message',
-  templateUrl: '../../themes/_active/util/error-message.component.html'
+  templateUrl: './error-message.component.html'
 })
 export class ErrorMessageComponent {
   @Input() error: any;

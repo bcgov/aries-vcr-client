@@ -3,8 +3,8 @@ import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: '../../themes/_active/app-footer/app-footer.component.html',
-  styleUrls: ['../../themes/_active/app-footer/app-footer.component.scss']
+  templateUrl: './app-footer.component.html',
+  styleUrls: ['./app-footer.component.scss']
 })
 export class AppFooterComponent {
 

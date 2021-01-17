@@ -6,8 +6,8 @@ import { GeneralDataService } from '../general-data.service';
 
 @Component({
   selector: 'attribute-view',
-  templateUrl: '../../themes/_active/util/attribute.component.html',
-  styleUrls: ['../../themes/_active/cred/cred.scss']
+  templateUrl: './attribute.component.html',
+  styleUrls: ['../shared/styles/cred/cred.scss']
 })
 export class AttributeComponent {
 

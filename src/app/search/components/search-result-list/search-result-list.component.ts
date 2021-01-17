@@ -3,8 +3,8 @@ import { Filter, Model } from 'app/data-types';
 
 @Component({
   selector: 'app-search-result-list',
-  templateUrl: '../../../../themes/_active/search/search-result-list.component.html',
-  styleUrls: ['../../../../themes/_active/search/search-result-list.component.scss']
+  templateUrl: './search-result-list.component.html',
+  styleUrls: ['./search-result-list.component.scss']
 })
 export class SearchResultListComponent {
   @Input() blankQuery: boolean;

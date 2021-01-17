@@ -3,7 +3,7 @@ import { Model } from '../data-types';
 
 @Component({
   selector: 'timeline-cred',
-  templateUrl: '../../themes/_active/cred/timeline-cred.component.html',
+  templateUrl: './timeline-cred.component.html',
 })
 export class TimelineCredComponent {
   protected _cred: Model.Credential;

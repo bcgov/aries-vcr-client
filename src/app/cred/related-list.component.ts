@@ -8,8 +8,8 @@ import { ICredentialSet } from 'app/core/interfaces/i-credential-set.interface';
 
 @Component({
   selector: 'related-creds',
-  templateUrl: '../../themes/_active/cred/related-list.component.html',
-  styleUrls: ['../../themes/_active/cred/related-list.component.scss']
+  templateUrl: './related-list.component.html',
+  styleUrls: ['./related-list.component.scss']
 })
 export class RelatedCredsComponent implements OnInit, OnDestroy {
   protected _topicId: number;

@@ -6,8 +6,8 @@ import { throwError as _throw } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
-  templateUrl: '../../themes/_active/info/contact.component.html',
-  styleUrls: ['../../themes/_active/info/contact.component.scss']
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
 

@@ -10,8 +10,8 @@ import { TopicStateService } from './services/topic-state.service';
 
 @Component({
   selector: 'topic-form',
-  templateUrl: '../../themes/_active/topic/form.component.html',
-  styleUrls: ['../../themes/_active/topic/form.component.scss'],
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss'],
 })
 export class TopicFormComponent implements OnInit, OnDestroy {
   source_type: string;

@@ -13,35 +13,34 @@
           "options": {
             "aot": true,
             "outputPath": "dist",
-            "index": "src/themes/_active/index.html",
+            "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src",
-                "src/themes/_active"
+                "src"
               ]
             },
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/themes/_active/assets",
+                "input": "src/assets",
                 "output": "/assets"
               },
               {
                 "glob": "favicon.ico",
-                "input": "src/themes/_active",
+                "input": "src",
                 "output": "/"
               },
               {
                 "glob": "robots.txt",
-                "input": "src/themes/_active",
+                "input": "src",
                 "output": "/"
               }
             ],
             "styles": [
-              "src/themes/_active/styles.scss"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -150,17 +149,17 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/themes/_active/styles.scss"
+              "src/styles/styles.scss"
             ],
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/themes/_active/assets",
+                "input": "src/assets",
                 "output": "/assets"
               },
               {
                 "glob": "favicon.ico",
-                "input": "src/themes/_active",
+                "input": "src",
                 "output": "/"
               }
             ]

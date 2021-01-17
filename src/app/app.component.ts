@@ -10,8 +10,8 @@ import { filter, mergeMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  templateUrl: '../themes/_active/app/app.component.html',
-  styleUrls: ['../themes/_active/app/app.component.scss']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
   currentLang: string;

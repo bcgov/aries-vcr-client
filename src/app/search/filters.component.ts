@@ -3,8 +3,8 @@ import { Fetch, Filter } from '../data-types';
 
 @Component({
   selector: 'search-filters',
-  templateUrl: '../../themes/_active/search/filters.component.html',
-  styleUrls: ['../../themes/_active/search/filters.component.scss']
+  templateUrl: './filters.component.html',
+  styleUrls: ['./filters.component.scss']
 })
 export class SearchFiltersComponent {
 

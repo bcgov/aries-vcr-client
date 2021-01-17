@@ -9,8 +9,8 @@ export interface ISelectOption {
 
 @Component({
   selector: 'app-select',
-  templateUrl: '../../../../themes/_active/shared/select.component.html',
-  styleUrls: ['../../../../themes/_active/shared/select.component.scss'],
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

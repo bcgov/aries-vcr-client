@@ -3,8 +3,8 @@ import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-header',
-  templateUrl: '../../themes/_active/app-header/app-header.component.html',
-  styleUrls: ['../../themes/_active/app-header/app-header.component.scss']
+  templateUrl: './app-header.component.html',
+  styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent {
   navCollapsed: boolean = true;

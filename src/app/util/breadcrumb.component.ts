@@ -7,8 +7,8 @@ const PRIMARY_OUTLET: string = 'primary';
 
 @Component({
   selector: 'app-breadcrumb',
-  templateUrl: '../../themes/_active/util/breadcrumb.component.html',
-  styleUrls: ['../../themes/_active/util/breadcrumb.component.scss']
+  templateUrl: './breadcrumb.component.html',
+  styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit, OnDestroy {
   public breadcrumbs: any[] = [];

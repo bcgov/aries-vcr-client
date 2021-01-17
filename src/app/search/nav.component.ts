@@ -3,8 +3,8 @@ import { Fetch } from '../data-types';
 
 @Component({
   selector: 'search-nav',
-  templateUrl: '../../themes/_active/search/nav.component.html',
-  styleUrls: ['../../themes/_active/search/nav.component.scss']
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss']
 })
 export class SearchNavComponent {
 

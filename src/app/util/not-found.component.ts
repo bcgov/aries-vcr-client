@@ -10,7 +10,7 @@ function joinPath(path) {
 
 @Component({
   selector: 'app-not-found',
-  templateUrl: '../../themes/_active/util/not-found.component.html'
+  templateUrl: './not-found.component.html'
 })
 export class NotFoundComponent implements OnInit {
   @Input() nested: boolean = false;

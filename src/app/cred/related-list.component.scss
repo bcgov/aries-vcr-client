@@ -1,0 +1,9 @@
+.filter-entry {
+  margin-right: 5px;
+  margin-bottom: 0;
+  > label {
+    margin-bottom: 0;
+  }
+}
+
+@import "src/app/shared/styles/custom/related-list.component.custom";

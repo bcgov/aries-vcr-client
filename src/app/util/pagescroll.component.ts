@@ -2,8 +2,8 @@ import { AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy, Component, N
 
 @Component({
   selector: 'app-pagescroll',
-  templateUrl: '../../themes/_active/util/pagescroll.component.html',
-  styleUrls: ['../../themes/_active/util/pagescroll.component.scss'],
+  templateUrl: './pagescroll.component.html',
+  styleUrls: ['./pagescroll.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   /*host: {
     '(window:scroll)': 'onScroll($event)',

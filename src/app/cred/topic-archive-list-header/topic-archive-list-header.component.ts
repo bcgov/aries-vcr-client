@@ -5,11 +5,11 @@ import { ICredential } from 'app/core/interfaces/i-credential.interface';
 
 @Component({
   selector: 'app-topic-archive-list-header',
-  templateUrl: '../../../themes/_active/cred/topic-archive-list-header.component.html',
+  templateUrl: './topic-archive-list-header.component.html',
   styleUrls: [
-    '../../../themes/_active/cred/topic-archive-list-header.component.scss',
-    '../../../themes/_active/cred/cred.scss',
-    '../../../themes/_active/cred/list.component.scss',
+    './topic-archive-list-header.component.scss',
+    '../../shared/styles/cred/cred.scss',
+    '../../shared/styles/cred/list.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

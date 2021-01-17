@@ -42,8 +42,8 @@ const FilterSpec = [
 
 @Component({
   selector: 'app-search',
-  templateUrl: '../../themes/_active/search/form.component.html',
-  styleUrls: ['../../themes/_active/search/form.component.scss']
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy, AfterViewInit {
 

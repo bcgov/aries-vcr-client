@@ -8,7 +8,7 @@ import {
 @Component({
   selector: 'app-topic-archive-list-item',
   templateUrl:
-    '../../../themes/_active/cred/topic-archive-list-item.component.html',
+    './topic-archive-list-item.component.html',
   styleUrls: ['./topic-archive-list-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

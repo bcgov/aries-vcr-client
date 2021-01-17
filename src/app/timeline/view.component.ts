@@ -11,7 +11,7 @@ import { TimelineService } from './services/timeline.service';
   template: `
     <div #outer></div>
   `,
-  styleUrls: ['../../themes/_active/timeline/timeline.scss'],
+  styleUrls: ['./timeline.scss'],
   /*host: {
     '(window:resize)': 'onResize($event)',
   },*/

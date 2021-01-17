@@ -9,10 +9,10 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'cred-form',
-  templateUrl: '../../themes/_active/cred/form.component.html',
+  templateUrl: './form.component.html',
   styleUrls: [
-    '../../themes/_active/cred/cred.scss',
-    '../../themes/_active/cred/form.component.scss'],
+    '../shared/styles/cred/cred.scss',
+    './form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CredFormComponent implements OnInit, OnDestroy, AfterViewInit {
