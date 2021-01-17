@@ -38,20 +38,20 @@ const ROUTE_PREFIX: string = 'ROUTES.';
 
 export const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
-     return appConfig.loadFromPromise(import(/* webpackMode: "eager" */ `../themes/_active/assets/config.json`));
+     return appConfig.loadFromPromise(import(/* webpackMode: "eager" */ `../assets/config.json`));
   };
 };
 
 export class WebpackTranslateLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
-    return from(import(/* webpackMode: "eager" */ `../themes/_active/assets/i18n/${lang}.json`));
+    return from(import(/* webpackMode: "eager" */ `../assets/i18n/${lang}.json`));
   }
 }
 
 export class WebpackLocalizeRouterLoader extends LocalizeParser {
   load(routes: Routes): Promise<any> {
     return new Promise(resolve => {
-      import(/* webpackMode: "eager" */ `../themes/_active/assets/locales.json`).then(data => {
+      import(/* webpackMode: "eager" */ `../assets/locales.json`).then(data => {
         let config = <ILocalizeRouterParserConfig>(<any>data);
         this.locales = config.locales;
         this.prefix = config.prefix || '';
