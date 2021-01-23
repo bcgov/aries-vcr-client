@@ -4,6 +4,7 @@
 .env
 # precompiled theme
 /src/themes/_active/
+/themes/
 
 # compiled output
 /dist
