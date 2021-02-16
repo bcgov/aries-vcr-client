@@ -9,11 +9,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
-    "dev": "run-p --print-label --silent start watch-theme",
-    "start": "node build-theme.js && node --trace-warnings ./node_modules/\\@angular/cli/bin/ng serve --host 0.0.0.0 --port 8080 --base-href ${NG_BASE_HREF:-/} --deploy-url ${NG_DEPLOY_URL:-/} --configuration ${NG_ENV:-dev} --poll 2000",
-    "build": "node build-theme.js && ng build --prod --base-href ${NG_BASE_HREF:-/} --deploy-url ${NG_DEPLOY_URL:-/} ${NG_BUILD_FLAGS:-}",
-    "watch-theme": "node watch-theme.js",
-    "inspect": "node build-theme.js && node --inspect=${DEBUG_PORT-9229} --debug-brk -- node_modules/\\@angular/cli/bin/ng serve -o --base-href ${NG_BASE_HREF:-/} --deploy-url ${NG_DEPLOY_URL:-/} --configuration ${NG_ENV:-dev}\"",
+    "start": "ng serve",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
