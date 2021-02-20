@@ -1,4 +1,4 @@
-[![img](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![img](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 
 # Aries VCR Client
 
@@ -36,3 +36,17 @@ The following examples showcase cusotmized UIs using this Aries VCR Client as a 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Contributing
+
+**Pull requests are always welcome!**
+
+Please see the [Contributions Guide](CONTRIBUTING.md) for the repo.
+
+You may also create an issue if you would like to suggest additional resources to include in this repository.
+
+All contrbutions to this repository should adhere to our [Code of Conduct](./CODE_OF_CONDUCT).
+
+## License
+
+[Apache License Version 2.0](./LICENSE)
