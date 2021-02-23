@@ -180,7 +180,7 @@ build-web() {
     -e "HTTPS_PROXY=${HTTPS_PROXY}" \
     -e "NG_BASE_HREF=${WEB_BASE_HREF}" \
     -e "NG_DEPLOY_URL=${WEB_DEPLOY_URL}" \
-    -v "${COMPOSE_PROJECT_NAME}_vcr-npm-cache:/opt/app-root/src/.npm" \
+    -v "${COMPOSE_PROJECT_NAME}_npm-cache:/opt/app-root/src/.npm" \
     --runtime-image nginx-runtime \
     -a /opt/app-root/src/dist:app \
     '../' \
