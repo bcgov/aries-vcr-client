@@ -1,0 +1,267 @@
+#!/bin/bash
+export MSYS_NO_PATHCONV=1
+export DOCKERHOST=${APPLICATION_URL-$(docker run --rm --net=host eclipse/che-ip)}
+set -e
+
+S2I_EXE=s2i
+if [ -z $(type -P "$S2I_EXE") ]; then
+  echo -e "The ${S2I_EXE} executable is needed and not on your path."
+  echo -e "It can be downloaded from here: https://github.com/openshift/source-to-image/releases"
+  echo -e "Make sure you extract the binary and place it in a directory on your path."
+  exit 1
+fi
+
+SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
+
+# ==================================================================================================
+# Usage:
+# --------------------------------------------------------------------------------------------------
+usage() {
+  cat <<-EOF
+
+      Usage: $0 [command] [options]
+
+      Commands:
+
+      build -   Build the docker images for the project. You need to do this first, since the builds
+                require a combination of Docker and S2I builds.
+
+      up -      Creates application containers from the built images and starts services based on
+                the docker-compose.yml file.
+
+      start -   Same as up.
+
+      restart - Re-starts application containers, useful when updating the container image during
+                development.
+
+      logs -    Display logs from the docker compose run (ctrl-c to exit).
+
+      stop -    Stops services. This is a non-destructive process. Any created volumes and
+                containers are not deleted so they will be reused the next time you run start.
+
+      down -    Brings down services and removes any created volumes (storage) and containers.
+
+      rm -      Same as down.
+
+EOF
+  exit 1
+}
+
+# -----------------------------------------------------------------------------------------------------------------
+# Default Settings:
+# -----------------------------------------------------------------------------------------------------------------
+DEFAULT_CONTAINERS="vcr-web"
+
+toLower() {
+  echo $(echo ${@} | tr '[:upper:]' '[:lower:]')
+}
+
+echoError() {
+  _msg=${1}
+  _red='\033[0;31m'
+  _nc='\033[0m' # No Color
+  echo -e "${_red}${_msg}${_nc}" >&2
+}
+
+functionExists() {
+  (
+    if [ ! -z ${1} ] && type ${1} &>/dev/null; then
+      return 0
+    else
+      return 1
+    fi
+  )
+}
+
+getStartupParams() {
+  CONTAINERS=""
+  ARGS=""
+
+  for arg in $@; do
+    case "$arg" in
+    *=*)
+      # Skip it
+      ;;
+    -*)
+      ARGS+=" $arg"
+      ;;
+    *)
+      CONTAINERS+=" $arg"
+      ;;
+    esac
+  done
+
+  if [ -z "$CONTAINERS" ]; then
+    CONTAINERS="$DEFAULT_CONTAINERS"
+  fi
+
+  echo ${ARGS} ${CONTAINERS}
+}
+
+configureEnvironment() {
+  if [ -f .env ]; then
+    while read line; do
+      if [[ ! "$line" =~ ^\# ]] && [[ "$line" =~ .*= ]]; then
+        export ${line//[$'\r\n']}
+      fi
+    done <.env
+  fi
+
+  for arg in "$@"; do
+    # Remove recognized arguments from the list after processing.
+    shift
+
+    # echo "arg: ${arg}"
+    # echo "Remaining: ${@}"
+
+    case "$arg" in
+      *=*)
+        # echo "Exporting ..."
+        export "${arg}"
+        ;;
+      *)
+        # echo "Saving for later ..."
+        # If not recognized, save it for later procesing ...
+        set -- "$@" "$arg"
+        ;;
+    esac
+  done
+
+  export COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-vcr-web}"
+  export STI_SCRIPTS_PATH=${STI_SCRIPTS_PATH:-/usr/libexec/s2i}
+  export WEB_HTTP_PORT=${WEB_HTTP_PORT:-8080}
+  export WEB_BASE_HREF=${WEB_BASE_HREF:-/}
+  export WEB_DEPLOY_URL=${WEB_DEPLOY_URL:-/}
+  export API_URL=${API_URL-http://vcr-api:8080/api/}
+  export IpFilterRules='#allow all; deny all;'
+  export RealIpFrom='127.0.0.0/16'
+  export HTTP_BASIC_USERNAME=${HTTP_BASIC_USERNAME:-}
+  export HTTP_BASIC_PASSWORD=${HTTP_BASIC_PASSWORD:-}
+}
+
+build-all() {
+  build-web
+}
+
+build-web() {
+  #
+  # vcr-web
+  #
+  # The nginx-runtime image is used for the final runtime image.
+  # The nodejs-build image is used to build the artifacts for the angular distribution.
+  # The vcr-web image is copy of the nginx-runtime image complete with a copy of the build artifacts.
+  #
+  echo -e "\nBuilding nginx-runtime image ..."
+  docker build -q \
+    -t 'nginx-runtime' \
+    -f './nginx-runtime/Dockerfile' './nginx-runtime/'
+
+  # This image only exists to pre-create the npm cache directory
+  # so it can be properly used as a volume, it doesn't apply to openshift
+  echo -e "\nBuilding nodejs-build image ..."
+  docker build -q \
+    -t 'nodejs-build' \
+    -f './nodejs-build/Dockerfile' './nodejs-build/'
+
+  if [ -t 0 ]; then
+    # color npm output in interactive terminal
+    NPM_COLOR="always"
+  else
+    NPM_COLOR="true"
+  fi
+
+  echo -e "\nBuilding vcr-web image ..."
+
+  ${S2I_EXE} build \
+    --copy \
+    -e "NPM_CONFIG_COLOR=${NPM_COLOR}" \
+    -e "NPM_CONFIG_LOGLEVEL=timing" \
+    -e "HTTP_PROXY=${HTTP_PROXY}" \
+    -e "HTTPS_PROXY=${HTTPS_PROXY}" \
+    -e "NG_BASE_HREF=${WEB_BASE_HREF}" \
+    -e "NG_DEPLOY_URL=${WEB_DEPLOY_URL}" \
+    -v "${COMPOSE_PROJECT_NAME}_npm-cache:/opt/app-root/src/.npm" \
+    --runtime-image nginx-runtime \
+    -a /opt/app-root/src/dist:app \
+    '../' \
+    'nodejs-build' \
+    'vcr-web'
+}
+
+cleanUpEnvironment() {
+  _projectName=${COMPOSE_PROJECT_NAME:-docker}
+
+  echo "Stopping and removing any running containers ..."
+  docker-compose down -v
+
+  _pattern="^${_projectName}_\|^docker_"
+  _volumes=$(docker volume ls -q | grep ${_pattern})
+
+  if [ ! -z "${_volumes}" ]; then
+    echo "Removing project volumes ..."
+    echo ${_volumes} | xargs docker volume rm
+  else
+    echo "No project volumes exist."
+  fi
+
+  echo "Removing build cache ..."
+  rm -Rf ../.cache
+}
+
+pushd ${SCRIPT_HOME} >/dev/null
+COMMAND=$(toLower ${1})
+shift || COMMAND=usage
+
+case "${COMMAND}" in
+  start|up)
+    _startupParams=$(getStartupParams --force-recreate $@)
+    configureEnvironment "$@"
+    docker-compose up -d ${_startupParams}
+    docker-compose logs -f
+    ;;
+  restart)
+    _startupParams=$(getStartupParams $@)
+    configureEnvironment "$@"
+    docker-compose stop ${_startupParams}
+    docker-compose up -d ${_startupParams}
+    ;;
+  logs)
+    configureEnvironment "$@"
+    docker-compose logs -f
+    ;;
+  stop)
+    configureEnvironment
+    docker-compose stop
+    ;;
+  rm|down)
+    configureEnvironment
+    cleanUpEnvironment
+    ;;
+  build)
+    configureEnvironment "$@"
+
+    buildImage=$(toLower ${1})
+    shift || buildImage=all
+    buildImage=$(echo ${buildImage} | sed s~^vcr-~~)
+    case "$buildImage" in
+      *=*)
+        buildImage=all
+        ;;
+    esac
+
+    if functionExists "build-${buildImage}"; then
+      eval "build-${buildImage}"
+    else
+      msg="The build function, build-${buildImage}, does not exist. "
+      msg+="Please check your build parameters and try again.\n"
+      msg+="Use '-h' to get full help details."
+      echoError "$msg"
+      exit 1
+    fi
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+popd >/dev/null

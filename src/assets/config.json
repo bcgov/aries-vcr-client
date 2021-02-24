@@ -1,7 +1,1 @@
-{
-    "APPLICATION_URL": "",
-    "API_URL": "http://localhost:8081/api",
-    "BASE_HREF": "",
-    "DISPLAY_TIMEZONE": "",
-    "THEME": "base"
-}
+{"APPLICATION_URL":"","API_URL":"","BASE_HREF":"","DISPLAY_TIMEZONE":"","THEME":"base"}

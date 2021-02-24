@@ -9,8 +9,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node build-config.js && ng serve",
+    "build": "node build-config.js && ng build --prod --base-href ${NG_BASE_HREF:-/} --deploy-url ${NG_DEPLOY_URL:-/} ${NG_BUILD_FLAGS:-}",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
