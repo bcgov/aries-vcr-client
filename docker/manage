@@ -132,7 +132,7 @@ configureEnvironment() {
   export WEB_HTTP_PORT=${WEB_HTTP_PORT:-8080}
   export WEB_BASE_HREF=${WEB_BASE_HREF:-/}
   export WEB_DEPLOY_URL=${WEB_DEPLOY_URL:-/}
-  export API_URL=${API_URL-http://vcr-api:8081/api/}
+  export API_URL=${API_URL-http://vcr-api:8080/api/}
   export IpFilterRules='#allow all; deny all;'
   export RealIpFrom='127.0.0.0/16'
   export HTTP_BASIC_USERNAME=${HTTP_BASIC_USERNAME:-}
