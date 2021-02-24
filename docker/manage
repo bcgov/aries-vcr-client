@@ -56,7 +56,7 @@ toLower() {
   echo $(echo ${@} | tr '[:upper:]' '[:lower:]')
 }
 
-echoError (){
+echoError() {
   _msg=${1}
   _red='\033[0;31m'
   _nc='\033[0m' # No Color
@@ -188,7 +188,7 @@ build-web() {
     'vcr-web'
 }
 
-deleteVolumes() {
+cleanUpEnvironment() {
   _projectName=${COMPOSE_PROJECT_NAME:-docker}
 
   echo "Stopping and removing any running containers ..."
@@ -235,7 +235,7 @@ case "${COMMAND}" in
     ;;
   rm|down)
     configureEnvironment
-    deleteVolumes
+    cleanUpEnvironment
     ;;
   build)
     configureEnvironment "$@"
