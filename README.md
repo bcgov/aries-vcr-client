@@ -22,8 +22,6 @@ followed by
 ./manage start
 ```
 
-
-
 ## Development
 
 Development is best done locally and requires the Angular CLI to be installed (see the installation instructions [here](https://angular.io/cli#installing-angular-cli)). With the CLI installed, navigate to the root directory of the repository and run the following in a terminal:
