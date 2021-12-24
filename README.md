@@ -6,7 +6,7 @@
 
 This application implements a user interface (built with Angular) for Aries VCR, calling the API to search and consume data about credentials.
 
-_Note: The following sections on [Running](#running) and [Development](#development) assume that you already have a locally running instance of Aries-VCR. Please see the instructions [here](https://github.com/bcgov/aries-vcr/tree/master/docs) for running Aries-VCR locally with docker._
+_Note: The following sections on [Running](#running) and [Development](#development) assume that you already have a locally running instance of Aries-VCR. Please see the instructions [here](https://github.com/bcgov/aries-vcr/tree/main/docs) for running Aries-VCR locally with docker._
 
 ## Running 
 
