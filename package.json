@@ -32,7 +32,7 @@
     "@ngx-translate/core": "^10.0.0",
     "@ngx-translate/http-loader": "^3.0.0",
     "bootstrap": "~4.3.1",
-    "compare-versions": "~3.1.0",
+    "compare-versions": "~3.6.0",
     "copy-webpack-plugin": "^5.1.2",
     "core-js": "~2.5.4",
     "font-awesome": "^4.7.0",
